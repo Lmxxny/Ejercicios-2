@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Solución
+namespace Segundo_Orden
 {
     public partial class Form1 : Form
     {
@@ -21,7 +21,8 @@ namespace Solución
         {
             txta.Clear();
             txtb.Clear();
-            txtx.Clear();
+            txtc.Clear();
+            txtd.Clear();
         }
 
         private void btncerrar_Click(object sender, EventArgs e)
@@ -31,10 +32,10 @@ namespace Solución
 
         private void btncalc_Click(object sender, EventArgs e)
         {
-            double a, b;
-            double x;
+            double a, b, c, d;
+            double det;
 
-            if (string.IsNullOrEmpty(txta.Text) || string.IsNullOrEmpty(txtb.Text))
+            if (string.IsNullOrEmpty(txta.Text) || string.IsNullOrEmpty(txtb.Text) || string.IsNullOrEmpty(txtc.Text) || string.IsNullOrEmpty(txtd.Text))
             {
                 MessageBox.Show("Por favor, ingresa un valor en los campos en blanco", "Dato faltante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -42,6 +43,8 @@ namespace Solución
             {
                 a = Convert.ToDouble(txta.Text);
                 b = Convert.ToDouble(txtb.Text);
+                c = Convert.ToDouble(txtc.Text);
+                d = Convert.ToDouble(txtd.Text);
 
                 if (a == 0)
                 {
@@ -52,12 +55,19 @@ namespace Solución
                 {
                     MessageBox.Show("No se puede evaluar la expresión para b = 0.", "Dato erróneo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                 else
+                else if (c == 0)
                 {
-                    x = -b / a;
-                    txtx.Text = x.ToString();
+                    MessageBox.Show("No se puede evaluar la expresión para c = 0.", "Dato erróneo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
+                else if (d == 0)
+                {
+                    MessageBox.Show("No se puede evaluar la expresión para d = 0.", "Dato erróneo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    det = (a * d) - (b * c);
+                    txtdet.Text = det.ToString();
+                }
             }
         }
     }
